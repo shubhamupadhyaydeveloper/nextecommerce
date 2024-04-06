@@ -10,7 +10,7 @@ export const Navbar = ({ children }: { children: React.ReactNode }) => {
   const { isMobile,setMobile } = useStore()
   return (
     <>
-      <div className={`bg-black text-white ${isMobile ? 'flex' :'hidden'} md:flex z-10 text-xl flex-col md:flex-row  p-4 gap-3`}>
+      <div className={`bg-black text-white ${isMobile ? 'flex' :'hidden'} md:flex z-10 text-xl flex-col md:flex-row p-4 gap-3`}>
         {children}
       </div>
 
