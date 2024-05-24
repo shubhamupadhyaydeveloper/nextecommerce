@@ -33,8 +33,9 @@ export default function EmailTemplate({ username, otp }: EmailTemplate) {
       </Head>
       <Preview>Here&apos;s your verification code: {otp}</Preview>
       <Section>
+         <Heading as="h1">Nikee 👋</Heading>
         <Row>
-          <Heading as="h2">Hello {username},</Heading>
+          <Heading as="h3">Hello {username},</Heading>
         </Row>
         <Row>
           <Text>
@@ -43,21 +44,18 @@ export default function EmailTemplate({ username, otp }: EmailTemplate) {
           </Text>
         </Row>
         <Row>
-          <Text>{otp}</Text>
+          <Heading as="h2">{otp}</Heading>
+          <Text>here your otp use the button for navigate</Text>
         </Row>
-        <Row>
-          <Text>
-            If you did not request this code, please ignore this email.
-          </Text>
-        </Row>
+         
         <Button
-          href={`http://localhost:3000/verify-email?otp=${otp}?`}
+          href={`http://localhost:3000/verify-email`}
           style={{
             display: "inline-block",
             padding: "10px 20px",
             fontSize: "16px",
             color: "#fff",
-            backgroundColor: "#ADD8E6", // Light blue background
+            backgroundColor: "#5AB2FF",
             borderRadius: "5px",
             textDecoration: "none",
             textAlign: "center",
@@ -65,6 +63,11 @@ export default function EmailTemplate({ username, otp }: EmailTemplate) {
         >
           Verify Email
         </Button>
+        <Row>
+          <Text>
+            If you did not request this code, please ignore this email.
+          </Text>
+        </Row>
       </Section>
     </Html>
   );

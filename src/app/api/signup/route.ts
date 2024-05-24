@@ -12,13 +12,13 @@ export async function POST(req : Request) {
   try {
     const {username ,email , password} = await req.json()
 
-    if(!username || !email || !password) return Response.json({message : "credentials is missing"},{status : 400})
+    if(!username || !email || !password) return Response.json({error : "credentials is missing"},{status : 400})
 
     const user = await userModel.findOne({email : email , isVerified : true})
-    if(user) return Response.json({message : "user already exist"},{status : 409})
+    if(user) return Response.json({error : "user already exist"},{status : 409})
 
     // user find by email
-    const userFindWithEmail = await userModel.findOne({email : email})
+    const userFindWithEmail = await userModel.findOne({email : email, isVerified  : false})
     
     const hashedPassword = await bcrypt.hash(password , 10);
     const codeGenerator = ():string => {
@@ -33,7 +33,11 @@ export async function POST(req : Request) {
         userFindWithEmail.verifyCodeExpiry = codeExpiry
         userFindWithEmail.username = username
         await userFindWithEmail.save()
+        
+        sendEmail({username , email , code : userFindWithEmail.verifyCode});
+        return Response.json({message : "user updated successful",user : userFindWithEmail}, {status : 201})
     }
+    
 
     const newUser = await userModel.create({
         username,
@@ -50,6 +54,6 @@ export async function POST(req : Request) {
     
   } catch (error:any) {
     console.log("error in signup",error)
-    return Response.json({message : "error in signup"})
+    return Response.json({error : "error in signup"})
   }
 }

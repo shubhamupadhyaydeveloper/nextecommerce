@@ -23,12 +23,12 @@ export const nextOptions:NextAuthOptions = {
            },
            async authorize(credential : any) : Promise<any> {
              try {
-               const user = await userModel.findOne({email : credential?.email})
+               const user = await userModel.findOne({email : credential?.email , isVerified : true})
                if(!user) {
                  throw new Error("user is not found with this email")
                }
 
-               const isPasswordCorrect = await bcrypt.compare(user.password , credential?.password)
+               const isPasswordCorrect = await bcrypt.compare(credential?.password , user.password)
 
                if(!isPasswordCorrect) {
                 throw new Error("password is not correct try again")

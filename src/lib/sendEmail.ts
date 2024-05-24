@@ -15,7 +15,7 @@ type Props = {
 export const sendEmail = async ({username,email,code}:Props) : Promise<Apiresponse> => {
     try {
         await resend.emails.send({
-            from: 'onboarding@resend.dev',
+            from: 'Nikee <donotreply@shubhamupadhyay.online>',
             to: email,
             subject: 'Signup Verificaiton Code',
             react:  EmailTemplate({username , otp: code}),

@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+
+
+
+
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -69,8 +74,31 @@
 @layer base {
   * {
     @apply border-border;
+    
   }
   body {
     @apply bg-background text-foreground;
   }
+}
+
+.lato {
+  font-family: var(--font-lato);
+}
+
+.anton {
+  font-family: var(--font-anton);
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-scroll {
+  display: flex;
+  animation: scroll 10s linear infinite;
 }

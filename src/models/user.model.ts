@@ -42,5 +42,5 @@ const userSchema = new Schema<TuserModel>({
     }
 },{timestamps : true}) 
 
-const userModel:Model<TuserModel> = mongoose.models.users || mongoose.model('User',userSchema)
+const userModel:Model<TuserModel> = mongoose.models.User || mongoose.model('User',userSchema)
 export default userModel;
