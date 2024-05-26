@@ -18,18 +18,18 @@ const myStyles = {
 
 const Card = ({ imageLink, title, price, rating }: Prop) => {
   return (
-    <div className="flex flex-col gap-2 mb-2 mt-2 items-center">
-      <Link href={"/verify-email"}>
+    <div className="flex flex-col gap-2 mb-2 mt-4 items-center transition-all hover:translate-y-1">
+      <Link href={"/product/1"}>
         <Image
           src={imageLink}
           width={300}
           height={200}
           alt="image"
-          className="rounded-md"
+          className="rounded-md xl:w-[15vw] 2xl:w-[13vw]"
         />
       </Link>
-      <div className="flex flex-col">
-        <h3 className="font-bold text-sm mt-2">{title}</h3>
+      <div className="flex flex-col w-[30vw] xl:w-[15vw] 2xl:w-[13vw] items-center md:items-start">
+        <h3 className="font-bold text-sm">{title}</h3>
         <div className="flex flex-row items-center">
           <Rating
             readOnly={true}
@@ -37,13 +37,9 @@ const Card = ({ imageLink, title, price, rating }: Prop) => {
             value={rating}
             itemStyles={myStyles}
           />
-          <div className={`flex text-sm relative right-${rating > 3 ? 8 : (rating < 3 ? 20 : 9)}`}>
-            <h1 className="font-bold">{rating}</h1>
-            <h1 className="font-light">/5</h1>
-          </div>
         </div>
         <h2 className="font-bold mt-1">₹ {price}</h2>
-        <Button className="w-[300px] mt-2">add to cart</Button>
+        <Button className="xl:w-[15vw] w-[30vw] 2xl:w-[13vw] mt-2">add to cart</Button>
       </div>
     </div>
   );

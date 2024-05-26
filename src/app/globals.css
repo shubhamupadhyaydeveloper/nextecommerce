@@ -102,3 +102,19 @@
   display: flex;
   animation: scroll 10s linear infinite;
 }
+
+.embla {
+  overflow: hidden;
+}
+.embla__viewport {
+  display: flex;
+}
+.embla__slide {
+  flex: 0 0 100%;
+  min-width: 0;
+}
+
+::selection {
+  background-color: black;
+  color: white;
+}

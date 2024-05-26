@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils";
 import { Toaster } from "sonner";
 import Navbar from "@/components/Navbar";
 import AuthProvider from "@/helper/authProvider";
+import Footer from "@/components/homepage/Footer";
 
 const fontSans = FontSans({ subsets: ["latin"], variable: "--font-sans" });
 const lato = Lato({
@@ -43,6 +44,7 @@ export default function RootLayout({
           <Toaster richColors />
           <Navbar />
           {children}
+          <Footer />
         </AuthProvider>
       </body>
     </html>
