@@ -2,7 +2,7 @@ import React from 'react'
 
 const Brands = () => {
   return (
-    <div className="overflow-hidden bg-black py-5">
+    <div className="overflow-hidden bg-black py-5 mt-5">
       <div className="flex animate-scroll whitespace-nowrap">
         <div className="flex items-center font-bold">
           <span className="text-white mx-8 text-xl">VERSACE</span>

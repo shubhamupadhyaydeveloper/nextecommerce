@@ -1,10 +1,10 @@
+import DynamicLoading from "@/components/DynamicLoading";
 import MaxWidthWrapper from "@/components/MaxWidthWrapper";
-import Banner from "@/components/homepage/Banner";
-import Brands from "@/components/homepage/Brands";
-import Browse from "@/components/homepage/Browse";
-import { EmblaCarousel } from "@/components/homepage/Crousel";
-import Footer from "@/components/homepage/Footer";
 
+const Banner = DynamicLoading(() => import("@/components/homepage/Banner"))
+const Brands = DynamicLoading(() => import("@/components/homepage/Brands"))
+const Browse = DynamicLoading(() => import("@/components/homepage/Browse"))
+const HomePageReviewCarausel = DynamicLoading(() => import("@/components/homepage/Crousel"))
 
 import Products from "@/components/homepage/Products";
 
@@ -12,17 +12,15 @@ import React from "react";
 
 const Home = () => {
   return (
+    <>
     <MaxWidthWrapper classname="mt-[100px] overflow-hidden">
        <Banner />
-       <div className="mt-5">
        <Brands />
-       </div>
-        <h1 className="anton text-center mt-14 mb-4 md:text-5xl text-3xl">NEW ARRIVALS</h1>
        <Products />
        <Browse />
-       <h1 className="anton text-start mt-16 mb-4 md:text-5xl text-3xl">OUR HAPPY CUSTOMER</h1>
-       <EmblaCarousel />
+       <HomePageReviewCarausel />
     </MaxWidthWrapper>
+    </>
   );
 };
 

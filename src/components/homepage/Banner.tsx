@@ -1,4 +1,3 @@
-import MaxWidthWrapper from "@/components/MaxWidthWrapper";
 import { Button } from "@/components/ui/button";
 import { bannerDescription } from "@/helper/constant";
 import { heroImg, starImg } from "@/helper/imgLocation";
@@ -23,9 +22,9 @@ const Banner = () => {
       </div>
     </div>
     <div className="relative">
-      <Image src={starImg} width={40} height={40} alt="star" className="absolute xl:top-40 xl:left-11 top-20 left-4" />
-      <Image src={heroImg} width={500} height={200} alt="cover img" />
-      <Image src={starImg} width={60} height={40} alt="star" className="absolute xl:top-20 xl:right-11 top-10 right-2" />
+      <Image loading="lazy" src={starImg} width={40} height={40} alt="star" className="absolute xl:top-40 xl:left-11 top-20 left-4" />
+      <Image loading="lazy" src={heroImg} width={500} height={200} alt="cover img" />
+      <Image loading="lazy" src={starImg} width={60} height={40} alt="star" className="absolute xl:top-20 xl:right-11 top-10 right-2" />
     </div>
   </div>
   )

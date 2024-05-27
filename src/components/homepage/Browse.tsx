@@ -11,21 +11,21 @@ const Browse = () => {
         <div className='flex flex-col md:flex-row gap-5'>
           <div className='flex-1 min-h-[21vh] flex justify-between max-h-[22vh] bg-white text-black px-5 rounded-lg overflow-hidden'>
              <h1 className='mt-10 pl-5 font-bold font-xl'>Casual</h1>
-              <Image src={browseImg1} width={300} height={100} className='md:w-[25vw] w-[45vw] md:h-[40vh]' alt='img' />
+              <Image loading='lazy' src={browseImg1} width={300} height={100} className='md:w-[25vw] w-[45vw] md:h-[40vh]' alt='img' />
           </div>
           <div className='flex-[2] min-h-[21vh] flex justify-between max-h-[22vh] bg-white text-black rounded-lg overflow-hidden'>
           <h1 className='mt-10 pl-5 lg:pl-20  font-bold font-xl'>Formal</h1>
-          <Image src={browseImg2} width={300} height={100} className='md:w-[25vw] w-[45vw] md:h-[40vh]' alt='img' />
+          <Image loading='lazy' src={browseImg2} width={300} height={100} className='md:w-[25vw] w-[45vw] md:h-[40vh]' alt='img' />
           </div>
         </div>
         <div className='flex flex-col md:flex-row gap-5'>
           <div className='flex-[2] min-h-[21vh] flex justify-between max-h-[22vh] bg-white text-black rounded-lg overflow-hidden'>
           <h1 className='mt-10 pl-5 lg:pl-20  font-bold font-xl'>Party</h1>
-          <Image src={browseImg3} width={300} height={100} className='md:w-[25vw] w-[45vw] md:h-[40vh]' alt='img' />
+          <Image loading='lazy' src={browseImg3} width={300} height={100} className='md:w-[25vw] w-[45vw] md:h-[40vh]' alt='img' />
           </div>
           <div className='flex-1 flex justify-between max-h-[22vh] min-h-[21vh] bg-white text-black rounded-lg overflow-hidden'>
           <h1 className='mt-10 pl-5 font-bold font-xl' >Gym</h1>
-          <Image src={browseImg4} width={300} height={100} className='md:w-[25vw] w-[45vw] md:h-[40vh]' alt='img' />
+          <Image loading='lazy' src={browseImg4} width={300} height={100} className='md:w-[25vw] w-[45vw] md:h-[40vh]' alt='img' />
           </div>
         </div>
       </div>

@@ -21,6 +21,7 @@ const Card = ({ imageLink, title, price, rating }: Prop) => {
     <div className="flex flex-col gap-2 mb-2 mt-4 items-center transition-all hover:translate-y-1">
       <Link href={"/product/1"}>
         <Image
+          loading="lazy"
           src={imageLink}
           width={300}
           height={200}
