@@ -1,27 +1,31 @@
-"use client";
-import React, { useState } from "react";
-import { useParams } from "next/navigation";
+import React from "react";
 import { Rating, ThinStar } from "@smastrom/react-rating";
 import "@smastrom/react-rating/style.css";
 import { Button } from "@/components/ui/button";
-import { Minus, Plus } from "lucide-react";
 import { EmblaOptionsType } from 'embla-carousel'
 import MaxWidthWrapper from "@/components/MaxWidthWrapper";
 import DynamicLoading from "@/components/DynamicLoading";
+import SizesButtons from "@/components/SizesButtons";
+import Increment from "@/components/Increment";
 const DetailPageCarousel = DynamicLoading(() => import("@/components/detail/DetailPageCarousel"))
 const ReviewCard = DynamicLoading(() => import("@/components/detail/ReviewCard"))
 const RedirectButton = DynamicLoading(() => import("@/components/RedirectButton"))
 
+type productProp = {
+  params: {
+    id: string;
+  };
+}
 
 const myStyles = {
   itemShapes: ThinStar,
   activeFillColor: "#ffb700",
 };
 
-const ProductDetail = () => {
-  const { id } = useParams();
-  const [sizeValue, SetSizeValue] = useState<string>('');
-  const sizesArray = ["small", "medium", "large", "x-large"]
+
+const ProductDetail = ({params}:productProp) => {
+  const id = params.id
+
   const OPTIONS: EmblaOptionsType = {}
   const SLIDES = ["/tshirt.png","/tshirt.png","/tshirt.png"]
   
@@ -53,25 +57,10 @@ const ProductDetail = () => {
             </div>
             <div>
               <h1 className="font-medium text-lg">Choose size</h1>
-              <div className="flex gap-2 mt-3 flex-wrap border-b-2 pb-4">
-                {sizesArray.map(item => (
-                  <Button
-                    key={item}
-                    onClick={() => SetSizeValue(item)}
-                    variant={"outline"}
-                    className={`${sizeValue === item && 'bg-black text-white'} rounded-full`}
-                  >
-                    {item}
-                  </Button>
-                ))}
-              </div>
+              <SizesButtons />
 
               <div className="flex gap-2 mt-5 w-[35vh] items-center ">
-                  <div className=" bg-[#F0F0F0] flex items-center flex-1 gap-5 p-[0.6rem] rounded-full">
-                    <Plus className="cursor-pointer" size={19}/> 
-                     <h1>{1}</h1>
-                     <Minus className="cursor-pointer" size={19}/>
-                  </div>
+                   <Increment />
                   <Button className="rounded-full flex-[2] px-5 w-[50vw] ">Add to Cart</Button>
               </div>
 

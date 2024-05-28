@@ -1,4 +1,5 @@
 import {z,} from 'zod';
+import { TproductSizes } from './model';
 
 // signup
 
@@ -21,3 +22,13 @@ export const TverifyCode = z.object({
     code : z.number()
 })
 
+export type Tproduct = {
+    _id : string,
+    title : string,
+    price : number,
+    description : string,
+    size : TproductSizes[],
+    img? : string,
+    quantity : number
+
+}

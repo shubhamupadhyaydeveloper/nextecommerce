@@ -20,12 +20,20 @@ const Navbar = () => {
         <div className="md:hidden">
           <MobileNavbar />
         </div>
-        <div className="hidden md:flex gap-2 md:gap-5">
-          <div className="flex items-center cursor-pointer">
+        <div className="hidden md:flex gap-1 md:gap-5">
+          <div className="flex items-center cursor-pointer relative">
             <Link href="/cart">
               <ShoppingCart />
             </Link>
+            <div className="flex items-center absolute top-1 left-4 justify-center rounded-full w-[20px] h-[20px] text-white bg-blue-500">
+            <h1 className="text-sm text-center">0</h1>
+            </div>
           </div>
+          {token?.data?.user?.isAdmin === true ? (
+            <Button variant={"outline"}>
+              <Link href={"/dashboard"}>Dashboard</Link>
+            </Button>
+          ) : null}
           {token?.status === "authenticated" ? (
             <Button onClick={() => signOut()}>logout</Button>
           ) : (

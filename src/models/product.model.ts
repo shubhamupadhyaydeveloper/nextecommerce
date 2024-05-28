@@ -1,5 +1,17 @@
 import mongoose ,{Model, Schema} from "mongoose";
-import { TproductModel, productSizeEnum } from "@/types/model";
+import { TproductModel,TproductSizes } from "@/types/model";
+
+const productSizeSchema = new Schema<TproductSizes>({
+     size :  {
+        type : String,
+        enum : ["small","medium","large","xlarge"],
+        required : true
+     },
+     quantity : {
+        type : Number,
+        required : true
+     }
+})
 
 const productSchema = new Schema<TproductModel>({
     title : {
@@ -15,8 +27,7 @@ const productSchema = new Schema<TproductModel>({
         required : true,
     },
     size : {
-        type : "String",
-        enum : productSizeEnum,
+        type : [productSizeSchema],
         required : true
     },
     img : {

@@ -55,9 +55,9 @@ export default function SignUpForm() {
     }
   };
 
-  const githubSignup = async () => {
-    await signIn("github");
-  };
+  const handleLogin = async () => {
+    await signIn("github")
+ }
 
   return (
     <div className="flex items-center justify-center min-h-screen">
@@ -133,12 +133,12 @@ export default function SignUpForm() {
                   Create an account
                 </Button>
               </form>
-              <form action={githubSignup}>
+            </Form>
+              <form action={handleLogin}>
                 <Button type="submit" variant="outline" className="w-full">
                   Sign up with GitHub
                 </Button>
               </form>
-            </Form>
           </div>
           <div className="mt-4 text-center text-sm">
             Already have an account?{" "}

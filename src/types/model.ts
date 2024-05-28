@@ -14,11 +14,11 @@ export type TuserModel = Document & {
 };
 
 // productmodel
-export enum productSizeEnum {
-  small = "small",
-  medium = "medium",
-  large = "large",
-  xlarge = "xlarge",
+export type Tsizes = "small" | "medium" | "large" | "xlarge"
+
+export type TproductSizes = {
+    size : Tsizes,
+    quantity : number
 }
 
 export enum orderStatus {
@@ -35,7 +35,7 @@ export enum orderPayment {
 export type TproductModel = Document & {
   title: string;
   price : number;
-  size: productSizeEnum;
+  size: TproductSizes[];
   description: string;
   img: [String];
   quantity  : number;

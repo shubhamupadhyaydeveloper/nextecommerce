@@ -3,6 +3,7 @@ import { Rating, ThinStar } from "@smastrom/react-rating";
 import "@smastrom/react-rating/style.css";
 import Link from "next/link";
 import { Button } from "../ui/button";
+import { ShoppingBag, ShoppingBagIcon } from "lucide-react";
 
 type Prop = {
   imageLink: string;
@@ -18,7 +19,7 @@ const myStyles = {
 
 const Card = ({ imageLink, title, price, rating }: Prop) => {
   return (
-    <div className="flex flex-col gap-2 mb-2 mt-4 items-center transition-all hover:translate-y-1">
+    <div className="flex flex-col gap-2 mb-2 mt-2 items-center transition-all hover:translate-y-1">
       <Link href={"/product/1"}>
         <Image
           loading="lazy"
@@ -30,7 +31,7 @@ const Card = ({ imageLink, title, price, rating }: Prop) => {
         />
       </Link>
       <div className="flex flex-col w-[30vw] xl:w-[15vw] 2xl:w-[13vw] items-center md:items-start">
-        <h3 className="font-bold text-sm">{title}</h3>
+        <h3 className="font-bold text-sm md:text-md">{title}</h3>
         <div className="flex flex-row items-center">
           <Rating
             readOnly={true}
@@ -39,8 +40,10 @@ const Card = ({ imageLink, title, price, rating }: Prop) => {
             itemStyles={myStyles}
           />
         </div>
-        <h2 className="font-bold mt-1">₹ {price}</h2>
-        <Button className="xl:w-[15vw] w-[30vw] 2xl:w-[13vw] mt-2">add to cart</Button>
+        <div className="flex items-center justify-between w-full mt-1">
+          <h2 className="font-bold mt-1">₹ {price}</h2>
+          <Button variant="outline"><ShoppingBagIcon/></Button>
+        </div>
       </div>
     </div>
   );
