@@ -1,25 +1,50 @@
-"use client"
-import React, { useState } from "react";
+"use client";
+import React, { useEffect, useState } from "react";
 import { Button } from "./ui/button";
+import { TproductSizes } from "@/types/model";
+import AddToCart from "./AddToCart";
 
-const SizesButtons = () => {
-  const [sizeValue, SetSizeValue] = useState<string>("");
-  const sizesArray = ["small", "medium", "large", "x-large"];
+type props = {
+  sizes?: TproductSizes[];
+  id: string;
+};
+
+type Tsizes = "small" | "medium" | "large" | "xlarge"
+
+const SizesButtons = ({ sizes, id }: props) => {
+  const [size, SetSize] = useState<string>("");
+  const [stock,SetStock] = useState<number>(0)
+
+
+  const handleClick = (size:Tsizes,count:number) => {
+      SetSize(size)
+      SetStock(count)
+  }
+
+  useEffect(() => {
+     SetSize("")
+     SetStock(0)
+  },[])
+
   return (
-    <div className="flex gap-2 mt-3 flex-wrap border-b-2 pb-4">
-      {sizesArray.map((item) => (
-        <Button
-          key={item}
-          onClick={() => SetSizeValue(item)}
-          variant={"outline"}
-          className={`${
-            sizeValue === item && "bg-black text-white"
-          } rounded-full`}
-        >
-          {item}
-        </Button>
-      ))}
-    </div>
+    <>
+      <div className="flex flex-col gap-4">
+        <div className="flex flex-wrap gap-2">
+          {sizes?.map((item) => (
+            <Button
+              key={item.size}
+              variant={"outline"}
+              disabled={item.quantity <= 0}
+              className={`${size === item.size && "bg-black text-white "}`}
+              onClick={() => handleClick(item.size,item.quantity)}
+            >
+              {item.size}
+            </Button>
+          ))}
+        </div>
+        <AddToCart id={id} disable={size === "" || stock === 0} size={size} stock={stock} />
+      </div>
+    </>
   );
 };
 

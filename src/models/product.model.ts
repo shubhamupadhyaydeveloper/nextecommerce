@@ -26,7 +26,7 @@ const productSchema = new Schema<TproductModel>({
         type : String,
         required : true,
     },
-    size : {
+    sizes : {
         type : [productSizeSchema],
         required : true
     },
@@ -37,8 +37,11 @@ const productSchema = new Schema<TproductModel>({
     quantity : {
         type : Number,
         required : true
+    },
+    rating : {
+        type : Number
     }
 },{timestamps : true})
 
-const productModel: Model<TproductModel> = mongoose.models.products || mongoose.model('Product',productSchema)
+const productModel: Model<TproductModel> = mongoose.models.Product || mongoose.model('Product',productSchema)
 export default productModel;

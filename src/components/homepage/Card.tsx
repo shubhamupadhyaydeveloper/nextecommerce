@@ -2,14 +2,15 @@ import Image from "next/image";
 import { Rating, ThinStar } from "@smastrom/react-rating";
 import "@smastrom/react-rating/style.css";
 import Link from "next/link";
-import { Button } from "../ui/button";
-import { ShoppingBag, ShoppingBagIcon } from "lucide-react";
+import { TproductSizes } from "@/types/model";
 
 type Prop = {
   imageLink: string;
   title: string;
   price: number;
   rating: number;
+  id : string,
+  sizes? : TproductSizes[]
 };
 
 const myStyles = {
@@ -17,10 +18,10 @@ const myStyles = {
   activeFillColor: "#ffb700",
 };
 
-const Card = ({ imageLink, title, price, rating }: Prop) => {
+const Card = ({imageLink, title, price, rating, id,sizes}: Prop) => {
   return (
     <div className="flex flex-col gap-2 mb-2 mt-2 items-center transition-all hover:translate-y-1">
-      <Link href={"/product/1"}>
+      <Link href={`/product/${id}`}>
         <Image
           loading="lazy"
           src={imageLink}
@@ -30,7 +31,7 @@ const Card = ({ imageLink, title, price, rating }: Prop) => {
           className="rounded-md xl:w-[15vw] 2xl:w-[13vw]"
         />
       </Link>
-      <div className="flex flex-col w-[30vw] xl:w-[15vw] 2xl:w-[13vw] items-center md:items-start">
+      <div className="flex flex-col max-w-[40vw] xl:w-[15vw] 2xl:w-[13vw] items-center md:items-start ga">
         <h3 className="font-bold text-sm md:text-md">{title}</h3>
         <div className="flex flex-row items-center">
           <Rating
@@ -40,9 +41,16 @@ const Card = ({ imageLink, title, price, rating }: Prop) => {
             itemStyles={myStyles}
           />
         </div>
-        <div className="flex items-center justify-between w-full mt-1">
+        <div className="flex items-center justify-between w-full mt-1 gap-5">
           <h2 className="font-bold mt-1">₹ {price}</h2>
-          <Button variant="outline"><ShoppingBagIcon/></Button>
+           <div className="flex gap-1">
+             {
+               sizes?.map(item => (
+                 item.quantity > 0 &&
+                   <h3 key={item.quantity} className="border px-2">{item.size.substring(0,2)}</h3>
+               ))
+             }
+           </div>
         </div>
       </div>
     </div>

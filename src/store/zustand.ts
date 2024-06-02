@@ -1,5 +1,6 @@
 import { create } from "zustand";
 import { Tproduct } from "@/types/types";
+import { TproductSizes } from "@/types/model";
 
 type store = {
   cart: Tproduct[];
@@ -11,7 +12,31 @@ type store = {
 
 const globalState = create<store>()((set) => ({
   cart: [],
-  addToCart: (item) => set((state) => ({ cart: [...state.cart, item] })),
+  addToCart: (product) =>
+    set((state) => {
+      const isAlreadyAdded = state.cart.some(
+        (item) => item?._id === product?._id && item.size === product.size
+      );
+
+      if (isAlreadyAdded) {
+        return {
+          cart: state.cart.map((item) =>
+            item._id === product._id && item.size === product.size
+              ? {
+                  ...item,
+                  quantity: item.quantity + product.quantity <= item.sizeStock
+                    ? item.quantity + product.quantity
+                    : item.quantity,
+                }
+              : item
+          ),
+        };
+      } else {
+        return {
+          cart: [...state.cart, product],
+        };
+      }
+    }),
   removeToCart: (id) =>
     set((state) => ({ cart: state.cart.filter((item) => item?._id != id) })),
   onIncrement: (id) =>

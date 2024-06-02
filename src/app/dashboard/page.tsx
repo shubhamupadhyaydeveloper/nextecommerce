@@ -4,22 +4,28 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import { createNewProduct } from "./action";
 import React from "react";
+import { useFormState, useFormStatus } from "react-dom";
 
 const Dashboard = () => {
+  const [error, action] = useFormState(createNewProduct, {});
+
   return (
     <MaxWidthWrapper classname="mt-[10vh] mb-[5vh] overflow-hidden lg:mb-[20vh] md:mb-[7vh]">
       <div>
         <h1 className="font-bold text-xl">Create New Item</h1>
-        <form action="" className="flex flex-col gap-3 mt-5">
+        <form action={action} className="flex flex-col gap-3 mt-5">
           <div>
             <Label htmlFor="file">Image</Label>
             <Input
               type="file"
-              name="imgLink"
-              id="file"
-              className="h-[10vh] cursor-pointer text-center p-5 w-[100vw]  md:w-[30vw] border rounded-lg"
+              name="image"
+              multiple
+              id="image"
+              className="h-[10vh] cursor-pointer text-center p-5 w-[100vw] md:w-[35vw] lg:w-[30vw] border rounded-lg"
             />
+            {error?.image && <h1 className="text-red-500">{error?.image}</h1>}
           </div>
 
           <div>
@@ -29,8 +35,9 @@ const Dashboard = () => {
               id="title"
               name="title"
               placeholder="enter title"
-              className="border p-2 rounded-lg w-[100vw] md:w-[30vw]"
+              className="border p-2 rounded-lg w-[100vw] md:w-[35vw] lg:w-[30vw]"
             />
+            {error?.title && <h1 className="text-red-500">{error?.title}</h1>}
           </div>
           <div>
             <Label htmlFor="price">Price</Label>
@@ -40,8 +47,10 @@ const Dashboard = () => {
               min={1}
               id="price"
               placeholder="enter price"
-              className="border p-2 rounded-lg w-[100vw]  md:w-[30vw]"
+              className="border p-2 rounded-lg w-[100vw] md:w-[35vw] lg:w-[30vw]"
             />
+
+            {error?.price && <h1 className="text-red-500">{error?.price}</h1>}
           </div>
           <div>
             <Label htmlFor="description">Description</Label>
@@ -49,8 +58,11 @@ const Dashboard = () => {
               name="description"
               id="description"
               placeholder="enter description"
-              className="border p-2 rounded-lg w-[100vw]  md:w-[30vw]"
+              className="border p-2 rounded-lg w-[100vw] md:w-[35vw] lg:w-[30vw]"
             />
+            {error?.description && (
+              <h1 className="text-red-500">{error?.description}</h1>
+            )}
           </div>
           <div>
             <Label htmlFor="sizes" className="font-bold text-lg">
@@ -64,7 +76,7 @@ const Dashboard = () => {
                   id="small"
                   name="small"
                   placeholder="small"
-                  className="w-[20vw] md:w-[10vw]"
+                  className="w-[20vw] md:w-[15vw] lg:w-[10vw]"
                 />
               </div>
               <div>
@@ -74,7 +86,7 @@ const Dashboard = () => {
                   id="medium"
                   name="medium"
                   placeholder="medium"
-                  className="w-[20vw] md:w-[10vw]"
+                  className="w-[20vw] md:w-[15vw] lg:w-[10vw]"
                 />
               </div>
               <div>
@@ -84,7 +96,7 @@ const Dashboard = () => {
                   id="large"
                   name="large"
                   placeholder="large"
-                  className="w-[20vw] md:w-[10vw]"
+                  className="w-[20vw] md:w-[15vw] lg:w-[10vw]"
                 />
               </div>
               <div>
@@ -94,7 +106,7 @@ const Dashboard = () => {
                   id="xlarge"
                   name="xlarge"
                   placeholder="xlarge"
-                  className="w-[20vw] md:w-[10vw]"
+                  className="w-[20vw] md:w-[15vw] lg:w-[10vw]"
                 />
               </div>
             </div>
@@ -107,13 +119,27 @@ const Dashboard = () => {
               id="quantity"
               min={1}
               placeholder="enter quantity"
-              className="border p-2 rounded-lg w-[100vw] md:w-[30vw]"
+              className="border p-2 rounded-lg w-[100vw] md:w-[35vw] lg:w-[30vw]"
             />
+            {error?.quantity && (
+              <h1 className="text-red-500">{error?.quantity}</h1>
+            )}
           </div>
-
-          <Button type={"submit"} className="w-[20vw] md:w-[10vw] mt-4">
-            save
-          </Button>
+          <div>
+            <Label htmlFor="rating">Rating</Label>
+            <Input
+              type="number"
+              name="rating"
+              id="rating"
+              min={1}
+              placeholder="enter rating"
+              className="border p-2 rounded-lg w-[100vw] md:w-[35vw] lg:w-[30vw]"
+            />
+            {error?.quantity && (
+              <h1 className="text-red-500">{error?.rating}</h1>
+            )}
+          </div>
+          <SubmitButton />
         </form>
       </div>
     </MaxWidthWrapper>
@@ -121,3 +147,16 @@ const Dashboard = () => {
 };
 
 export default Dashboard;
+
+function SubmitButton() {
+  const { pending } = useFormStatus();
+  return (
+    <Button
+      type={"submit"}
+      className="w-[20vw] md:w-[10vw] mt-4"
+      disabled={pending}
+    >
+      {pending ? "saving..." : "save"}
+    </Button>
+  );
+}

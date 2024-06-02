@@ -6,10 +6,11 @@ import { Button } from "./ui/button";
 import Link from "next/link";
 import { ShoppingCart } from "lucide-react";
 import MobileNavbar from "./MobileNavbar";
+import globalState from "@/store/zustand";
 
 const Navbar = () => {
   const token = useSession();
-  console.log(token);
+  const {cart} = globalState()
 
   return (
     <div className="fixed z-[10] inset-x-0 top-0 w-full border-b border-gray-200 bg-white/45 backdrop-blur-md transition-all p-3">
@@ -25,8 +26,8 @@ const Navbar = () => {
             <Link href="/cart">
               <ShoppingCart />
             </Link>
-            <div className="flex items-center absolute top-1 left-4 justify-center rounded-full w-[20px] h-[20px] text-white bg-blue-500">
-            <h1 className="text-sm text-center">0</h1>
+            <div className="flex items-center absolute top-1 left-4 justify-center rounded-full w-[15px] h-[15px] text-white bg-blue-500">
+            <h1 className="text-sm text-center">{cart.length}</h1>
             </div>
           </div>
           {token?.data?.user?.isAdmin === true ? (

@@ -35,10 +35,11 @@ export enum orderPayment {
 export type TproductModel = Document & {
   title: string;
   price : number;
-  size: TproductSizes[];
+  sizes: TproductSizes[];
   description: string;
-  img: [String];
+  img: [string];
   quantity  : number;
+  rating : number;
 };
 
 export type TreviewModel = Document & {
