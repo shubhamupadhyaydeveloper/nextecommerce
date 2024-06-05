@@ -36,7 +36,7 @@ const CartItem = ({imgLink,title,size,price,stock,quantity,id}:props) => {
         <div className="flex justify-between ">
           <h1 className="font-bold text-lg">₹ {price}</h1>
           {}
-           <Increment />
+           <Increment stock={stock} id={id} size={size} quantity={quantity} />
         </div>
       </div>
     </div>

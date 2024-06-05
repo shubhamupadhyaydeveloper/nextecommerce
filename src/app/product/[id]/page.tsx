@@ -64,6 +64,7 @@ const ProductDetail = async ({ params }: productProp) => {
             </div>
             <div>
               <h1 className="font-medium text-lg mb-2">Choose size</h1>
+             
               {detail?.sizes && (
                 <SizesButtons
                   sizes={detail.sizes}

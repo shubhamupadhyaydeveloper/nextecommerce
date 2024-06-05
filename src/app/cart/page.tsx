@@ -12,7 +12,7 @@ const CartPage = () => {
   const { cart } = globalState();
  
   return (
-    <MaxWidthWrapper classname="px-4 py-6">
+    <MaxWidthWrapper classname="px-4 py-6 md:mb-[15vh] lg:mb-[10vh]">
       <div className="mt-[10vh]">
         <RedirectButton />
         <h1 className="anton text-4xl mb-5">Your Cart</h1>

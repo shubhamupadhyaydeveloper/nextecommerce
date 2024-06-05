@@ -29,19 +29,21 @@ const SizesButtons = ({ sizes, id }: props) => {
   return (
     <>
       <div className="flex flex-col gap-4">
+
         <div className="flex flex-wrap gap-2">
           {sizes?.map((item) => (
             <Button
-              key={item.size}
-              variant={"outline"}
-              disabled={item.quantity <= 0}
-              className={`${size === item.size && "bg-black text-white "}`}
-              onClick={() => handleClick(item.size,item.quantity)}
+            key={item.size}
+            variant={"outline"}
+            disabled={item.quantity <= 0}
+            className={`${size === item.size && "bg-black text-white "}`}
+            onClick={() => handleClick(item.size,item.quantity)}
             >
               {item.size}
             </Button>
           ))}
         </div>
+          <h1 className="font-semibold text-md">You selected <span className="font-medium text-md text-green-400">{size === "" ? "None" : size}</span></h1>
         <AddToCart id={id} disable={size === "" || stock === 0} size={size} stock={stock} />
       </div>
     </>
