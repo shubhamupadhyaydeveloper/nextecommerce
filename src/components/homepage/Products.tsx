@@ -14,7 +14,7 @@ const Products = async () => {
   return (
     <>
     <h1 className="anton text-center mt-14 mb-4 md:text-5xl text-3xl">NEW ARRIVALS</h1>
-    <div className='grid md:gap-14 lg:gap-5 mb-2 grid-cols-1 md:grid-cols-2 xl:grid-cols-4 2xl:grid-cols-4 lg:grid-cols-2  p-5'>
+    <div className='grid md:gap-14 lg:gap-5 mb-2 grid-cols-1 md:grid-cols-2 xl:grid-cols-4 2xl:grid-cols-4 lg:grid-cols-2 '>
         {
           products.map((item) => (
               item.sizes && (

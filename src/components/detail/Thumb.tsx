@@ -9,20 +9,20 @@ type PropType = {
 }
 
 export const Thumb: React.FC<PropType> = (props) => {
-  const { selected, index, onClick , imgLink } = props
+  const { selected, onClick , imgLink } = props
 
   return (
     <div
       className={'embla-thumbs__slide'.concat(
-        selected ? ' embla-thumbs__slide--selected border border-blue-500  rounded-lg' : ''
+        selected ? ' embla-thumbs__slide--selected  border-2 border-black rounded-lg' : ''
       )}
     >
       <button
         onClick={onClick}
         type="button"
-        className="embla-thumbs__slide__number flex"
+        className="embla-thumbs__slide__number flex gap-3"
       >
-        <Image loading='lazy' src={imgLink} width={150} height={70} alt='img' className='rounded-lg w-[70px] h-[70px] md:py-[5px]'/>
+        <Image loading='lazy' src={imgLink} width={150} height={70} alt='img' className='rounded-lg '/>
       </button>
     </div>
   )

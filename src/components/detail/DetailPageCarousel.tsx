@@ -41,33 +41,42 @@ const DetailPageCarousel: React.FC<PropType> = (props) => {
   }, [emblaMainApi, onSelect])
 
   return (
-    <div className="embla flex flex-col gap-2 md:gap-3 md:flex-row">
-      <div className="embla-thumbs">
-        <div className="embla-thumbs__viewport" ref={emblaThumbsRef}>
-          <div className="embla-thumbs__container flex flex-row md:flex-col gap-4 pl-4">
-            {slides.map((item,index) => (
-              <Thumb
-                key={index}
-                onClick={() => onThumbClick(index)}
-                selected={index === selectedIndex}
-                index={index}
-                imgLink={item}
-              />
-            ))}
-          </div>
-        </div>
-      </div>
-      <div className="embla__viewport" ref={emblaMainRef}>
-        <div className="embla__container ">
-          {slides.map((element,index) => (
-            <div className="embla__slide" key={index}>
-              <div className="embla__slide__number"><Image loading='lazy' src={element} width={400} height={50} alt='img' /></div>
-            </div>
+    <div className="embla flex flex-col md:gap-3 md:flex-row">
+    <div className="embla-thumbs">
+      <div className="embla-thumbs__viewport" ref={emblaThumbsRef}>
+        <div className="embla-thumbs__container flex flex-row md:flex-col md:gap-[10px] gap-5 pl-4">
+          {slides.map((item, index) => (
+            <Thumb
+              key={index}
+              onClick={() => onThumbClick(index)}
+              selected={index === selectedIndex}
+              index={index}
+              imgLink={item}
+            />
           ))}
         </div>
       </div>
-
     </div>
+    <div className="embla__viewport h-[70vh] w-full md:w-[55vw] lg:w-[40vw] xl:w-[30vw] 2xl:w-[23vw]" ref={emblaMainRef}>
+      <div className="embla__container">
+        {slides.map((element, index) => (
+          <div className="embla__slide" key={index}>
+            <div className="embla__slide__number">
+              <Image
+                loading='lazy'
+                src={element}
+                width={300}
+                height={100}
+                alt='img'
+                className='w-full h-full object-cover'
+              />
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+  
   )
 }
 

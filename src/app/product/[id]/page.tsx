@@ -4,10 +4,7 @@ import "@smastrom/react-rating/style.css";
 import { EmblaOptionsType } from "embla-carousel";
 import MaxWidthWrapper from "@/components/MaxWidthWrapper";
 import DynamicLoading from "@/components/DynamicLoading";
-
-import AddToCart from "@/components/AddToCart";
 import { getProductDetail } from "@/lib/getData";
-import { TproductSizes } from "@/types/model";
 import SizesButtons from "@/components/SizesButtons";
 
 const DetailPageCarousel = DynamicLoading(
@@ -40,12 +37,12 @@ const ProductDetail = async ({ params }: productProp) => {
   return (
     <MaxWidthWrapper classname="">
       <div className="mb-20 flex flex-col p-2 overflow-hidden">
-        <RedirectButton className="mt-[10vh]" />
-        <div className="flex flex-col gap-10 xl:flex-row justify-between">
+        <RedirectButton className="mt-[10vh] md:mb-5" />
+        <div className="flex flex-col md:gap-10 md:mt-0 lg:flex-row xl:flex-row justify-between">
           <div className="">
             <DetailPageCarousel slides={SLIDES} options={OPTIONS} />
           </div>
-          <div className="flex flex-col gap-3">
+          <div className="flex flex-col gap-3 mt-2">
             <h1 className="anton md:text-4xl text-2xl">{detail?.title}</h1>
             <div className="flex flex-row items-center gap-2">
               <h1 className="font-medium">Rating</h1>
@@ -57,7 +54,7 @@ const ProductDetail = async ({ params }: productProp) => {
               />
             </div>
             <h1 className="font-bold text-3xl">₹ {detail?.price}</h1>
-            <div className="break-words w-[80vw] xl:w-[25vw] md:w-[80vw] border-b-2 pb-4">
+            <div className="break-words w-[80vw] lg:w-[30vw] xl:w-[35vw] 2xl:w-[27vw] md:w-[80vw] border-b-2 pb-4 flex flex-wrap">
               <h1 className="whitespace-normal md:text-xl text-md font-light">
                 {detail?.description}
               </h1>

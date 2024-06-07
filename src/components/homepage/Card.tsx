@@ -20,15 +20,15 @@ const myStyles = {
 
 const Card = ({imageLink, title, price, rating, id,sizes}: Prop) => {
   return (
-    <div className="flex flex-col gap-2 mb-2 mt-2 items-center transition-all hover:translate-y-1">
+    <div className="flex flex-col gap-2 mb-2 mt-2 items-center ">
       <Link href={`/product/${id}`}>
         <Image
           loading="lazy"
           src={imageLink}
           width={300}
-          height={200}
+          height={400}
           alt="image"
-          className="rounded-md xl:w-[15vw] 2xl:w-[13vw]"
+          className="rounded-md "
         />
       </Link>
       <div className="flex flex-col max-w-[40vw] xl:w-[15vw] 2xl:w-[13vw] items-center md:items-start ga">
@@ -47,7 +47,7 @@ const Card = ({imageLink, title, price, rating, id,sizes}: Prop) => {
              {
                sizes?.map(item => (
                  item.quantity > 0 &&
-                   <h3 key={item.quantity} className="border px-2">{item.size.substring(0,2)}</h3>
+                   <h3 key={item.quantity} className="border px-2">{item.size.substring(0,1)}</h3>
                ))
              }
            </div>

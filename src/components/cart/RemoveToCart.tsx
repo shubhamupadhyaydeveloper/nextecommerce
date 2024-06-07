@@ -4,13 +4,14 @@ import React from 'react'
 import globalState from '@/store/zustand'
 
 type prop = {
-    id : string
+    id : string,
+    size : string
 }
 
-const RemoveToCart = ({id}:prop) => {
+const RemoveToCart = ({id,size}:prop) => {
   const {removeToCart} = globalState()
   const handleClick = () =>{
-     removeToCart(id)
+     removeToCart(id,size)
   }
   return (
     <Trash2 color="red" className="cursor-pointer" onClick={handleClick} />
